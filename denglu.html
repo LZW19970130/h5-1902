@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>京东-欢迎登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .head {
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            top: 0;
+            box-shadow: 0px 0px 8px 3px #e6e6e6;
+            overflow: hidden;
+        }
+
+        .head img {
+            margin-left: 355px;
+            margin-top: 20px;
+            float: left;
+
+        }
+
+        .head h2 {
+            color: #333333;
+            font-size: 24px;
+            float: left;
+            margin-top: 40px;
+            margin-left: 16px;
+            font-weight: normal;
+        }
+
+        .main {
+            margin: 0px auto;
+            margin-top: 100px;
+            background: #9ec7db;
+            width: 100%;
+            height: 475px;
+            background-image: url(images/denglu.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }
+
+        .denglu {
+            width: 346px;
+            height: 360px;
+            /* border: 1px solid #444444; */
+            position: absolute;
+            right: 460px;
+            top: 60px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .btn {
+            width: 100%;
+            height: 20px;
+            margin-top: 16px;
+        }
+
+        .btn span {
+            display: inline-block;
+            width: 48%;
+            height: 100%;
+            font-size: 18px;
+            text-align: center;
+
+        }
+
+        .btn span:nth-child(1) {
+            border-right: 1px solid #cccc;
+        }
+
+        .btn span:hover {
+            font-weight: bold;
+            color: #e4393c;
+
+        }
+
+        .string {
+            display: inline-block;
+            width: 100%;
+            height: 1px;
+            background: #ebeaea;
+        }
+
+        .con {
+            width: 100%;
+            height: 304px;
+            overflow: hidden;
+        }
+
+        .img {
+            width: 162px;
+            height: 162px;
+            border: 1px solid #ebeaea;
+            padding-top: 6px;
+            padding-left: 6px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px;
+        }
+
+        .word {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .redword {
+            color: #e4393c;
+        }
+
+        .idenglu {
+            width: 304px;
+            height: 40px;
+            border: 1px solid #cccccc;
+            margin-top: 32px;
+            margin-left: 18px;
+        }
+
+        .idenglu img {
+            float: left;
+        }
+
+        .imima img {
+            float: left;
+        }
+
+        .imima {
+            width: 304px;
+            height: 40px;
+            border: 1px solid #cccccc;
+            margin-top: 20px;
+            margin-left: 18px;
+        }
+
+        input {
+            width: 260px;
+            height: 100%;
+            border: none;
+            outline: none;
+        }
+
+        h3 {
+            width: 305px;
+            margin-left: 18px;
+            height: 36px;
+            line-height: 36px;
+            background: #e4393c;
+            text-align: center;
+            letter-spacing: 20px;
+            margin-top: 46px;
+            color: white;
+        }
+        .active{
+            font-weight: bold;
+            color: #e4393c;
+        }
+        .foot ul{
+            display: inline-block;
+            margin-top:  20px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+        .foot ul li{
+            width: 82px;
+            height: 12px;
+            list-style: none;
+            float: left;
+            text-align: center;
+            font-size: 12px;
+            border-left: 1px solid #c2c2c2;
+        }
+        .foot ul li:hover{
+            color: #e71b1f;
+        }
+        .foot ul li:nth-child(1){
+            border-left: none;
+        }
+    </style>
+    <script src="js/common.js"></script>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script>
+        $(function () {
+
+            //找到按钮绑定事件
+            $('.btn span').click(function () {
+                //					alert(123);//系统的方法，在jq都可以使用，包括各种对象的方法
+                $(this).attr('class', 'active')
+                    .siblings()
+                    .attr('class', '');
+                //					console.log($(this).index());
+                $('.box').find('.con')
+                    .eq($(this).index())
+                    .css('display', 'block')
+                    .siblings()
+                    .css('display', 'none');
+            });
+
+            $('.denglu_btn').click(function(ev){//在点击登录按钮时，将数据传给后台，如果数据库有次用户，则允许登录
+                  //首先判断是否在登录状态，如果是，则不许登录，反之允许
+                  ev.stopPropagation();//防止冒泡事件，
+                  if(getCookie('name')){
+                      //在登录状态，不给登录
+                      alert('清先退出登录');
+                  }else{
+                     $.ajax({
+                         type : 'post',
+                         url : 'php/denglu.php',
+                         data : 'name=' + $('.name').val() + '&psw=' + $('.password').val(),
+                         success: function(str){
+                             console.log(str);
+                             
+                             if(str == 'yes'){//该用户名存在，可以登录
+                                 location.href='shouye.html';
+                                 setCookie('name',$('.name').val(),7);//将这个用户名存储到cookie里面，存储时间为7天。
+                             }else{
+                                 alert('该用户名不存在');
+                             }
+                             
+                         }
+                     })
+                  }
+
+              });
+        });
+    
+
+        
+
+    </script>
+</head>
+
+<body>
+    <div class="head">
+        <img src="images/logo.png" alt="">
+        <h2>欢迎登录
+        </h2>
+    </div>
+
+    <div class="main">
+        <div class="denglu">
+            <div class="btn">
+                <span class="active">扫码登录</span>
+                <span>帐号登录</span>
+            </div>
+            <span class="string"></span>
+            <div class="box">
+                <div class="con" style="display: block;">
+                    <div class="img">
+                        <img src="images/show.png" alt="">
+                    </div>
+                    <div class="word">
+                        <span>打开
+                            <span class="redword">手机京东</span>&nbsp;&nbsp;扫面二维码</span>
+                    </div>
+                </div>
+                <div class="con">
+                    <div class="idenglu">
+                        <img src="images/denglutu.png" alt="" >
+                        <input type="text" placeholder="邮箱/用户名/已验证手机" class="name">
+                    </div>
+                    <div class="imima">
+                        <img src="images/mimatu.png" alt="">
+                        <input type="password" placeholder="请输入密码" class="password">
+                    </div>
+                    <h3 class="denglu_btn">登录 </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <ul>
+            <li>关于我们</li>
+            <li>联系我们</li>
+            <li>人才招聘</li>
+            <li>商家入驻</li>
+            <li>广告服务</li>
+            <li>手机京东</li>
+            <li>友情连接</li>
+            <li>销售联盟</li>
+            <li>京东社区</li>
+            <li>京东公益</li>
+            <li>English Site</li>
+        </ul>
+    </div>
+</body>
+
+</html>

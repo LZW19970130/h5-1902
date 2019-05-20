@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>详情页</title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/xiangqinye.js"></script>
+    <script src="js/magnifier.js"></script>
+    <script src="js/common.js"></script>
+    <link rel="stylesheet" href="css/xiangqinye.css">
+    <link rel="stylesheet" href="../font_9corg09pi0v/iconfont.css">
+    <script>
+        $(function () {
+            //放大镜插件使用：先渲染再调用插件
+            var magnifierConfig = {
+                magnifier: "#magnifier1", //最外层的大容器
+                width: 400, //承载容器宽
+                height: 400, //承载容器高
+                moveWidth: null, //如果设置了移动盒子的宽度，则不计算缩放比例
+                zoom: 5 //缩放比例
+            };
+
+            var _magnifier = magnifier(magnifierConfig);
+
+
+
+            
+
+        })
+    </script>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="head">
+        <div class="contain">
+            <img src="images/b2.png" alt=""> &nbsp;
+            <span class="shopname">
+                <a href="shouye.html">京东商城</a>
+            </span>
+            <ul class="headguide">
+                <li class="change">
+                    <a href="denglu.html" class="changename">你好，请登录</a>
+                    <div id="hidden">
+                        <a href="##" class="quit">退出</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="zhuce.html">免费注册&nbsp;
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">我的订单&nbsp;
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">我的京东&nbsp;
+                        <img src="images/xiajian.png" alt=""> &nbsp;
+                        <span></span>
+                    </a>
+                    <div class="secondguideone">
+                        <span>待处理订单</span>
+                        <span>消息</span>
+                        <span>降价信息</span>
+                        <span>我的关注</span>
+                        <p></p>
+                        <span>我的京东</span>
+                        <span>我的白条</span>
+                        <span>我的优惠券</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="###">京东会员&nbsp;
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">企业采购&nbsp;
+                        <img src="images/xiajian.png" alt="">&nbsp;
+                        <span></span>
+                    </a>
+                    <div class="secondguidetwo">
+                        <span>企业购</span>
+                        <span>商场用品馆</span>
+                        <span>工业品</span>
+                        <span>礼品卡</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="###">客户服务&nbsp;
+                        <img src="images/xiajian.png" alt="">&nbsp;
+                        <span></span>
+                    </a>
+                    <div class="secondguidethree">
+                        <h2>客户</h2>
+                        <span>帮助中心</span>
+                        <span>售后服务</span>
+                        <span>在线客服</span>
+                        <span>意见建议</span>
+                        <span>电话客服</span>
+                        <span>客服邮箱</span>
+                        <h2>商户</h2>
+                        <span>合作招商</span>
+                        <span>招商中心</span>
+                        <span>合作后台</span>
+                        <span>平台规则</span>
+                    </div>
+
+                </li>
+                <li>
+                    <a href="###">网站导航&nbsp;
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">手机京东</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--搜索栏  -->
+    <div class="search">
+        <div class="contain">
+            <img src="images/logo.png" alt="" class="logoi">
+            <div class="searchbox">
+                <input type="text" placeholder="肉类" class="searchname">
+                <span class="searchworld">搜索</span>
+            </div>
+            <span class="smallcar">
+                <img src="images/smallcar.png" alt="">
+                <span>
+                    <a href="gouwuche.html">我的购物车</a>
+                </span>
+            </span>
+        </div>
+        <!---放大镜效果 -->
+        <div class="magnifier" id="magnifier1">
+            <div class="magnifier-container">
+                <div class="images-cover">
+                    <!-- <img src="" alt=""> -->
+                </div>
+                <!--当前图片显示容器-->
+                <div class="move-view">
+                </div>
+                <!--跟随鼠标移动的盒子-->
+            </div>
+            <div class="magnifier-assembly">
+                <div class="magnifier-btn">
+                    <span class="magnifier-btn-left">&lt;</span>
+                    <span class="magnifier-btn-right">&gt;</span>
+                </div>
+                <!--按钮组-->
+                <div class="magnifier-line">
+                    <ul class="clearfix animation03">
+                        <li>
+                            <div class="small-img" id="img-one">
+                                <!-- <img src="images/s5.jpg" /> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="small-img" id="img-two">
+                                <!-- <img src="images/s2.jpg" /> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="small-img" id="img-three">
+                                <!-- <img src="images/s1.jpg" /> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="small-img" id="img-four">
+                                <!-- <img src="images/s3.jpg" /> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="small-img" id="img-five">
+                                <!-- <img src="images/s5.jpg" /> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--缩略图-->
+            </div>
+            <div class="magnifier-view"></div>
+            <!--经过放大的图片显示容器-->
+        </div>
+        <!--  细节部分  -->
+        <div class="details">
+            <p class="title">
+                <span>
+                    <img src="images/markit.png" alt="" class="markit">
+                </span>
+                <span class="title-name"></span>
+            </p>
+            <div class="item-hide" id="p-ad" clstag="shangpin|keycount|product|slogana" data-hook="hide" title="京东自营猪肉，匠心精选爆款秒杀，更有满199减50。速来抢购！"
+                style="display: block;">京东自营猪肉，匠心精选
+                <a href="https://pro.m.jd.com/mall/active/ZkGi5EwNTPmGKtSsjPoXW3pP2Bs/index.html" target="_blank">爆款秒杀，更有满199减50。速来抢购！</a>
+            </div>
+            <div class="details-box">
+                <div class="dt">京 东 价</div>
+                <span class="p-price">
+                    <span>￥</span>
+                    <span class="price"></span>
+                </span>
+                <a class="notice-sale" href="#none">降价通知</a>
+                <div id="comment-count">
+                    <p class="comment">累计评价</p>
+                    <a class="count" href="#none">15万+</a>
+                </div>
+                <div id="summary-quan" class="li p-choose hide" >
+                    <div class="dt dt-one">优 惠 券</div>
+                    <div class="dd">
+                        <dl>
+                            <dt class="fl"></dt>
+                            <dd class="lh">
+                                <a class="J-open-tb" href="#none">
+                                    <span class="quan-item" title="仅可购买生鲜部分商品 有效期2019-05-10至2019-05-16">
+
+                                        <s></s>
+                                        <b></b>
+                                        <span class="text">满129减10</span>
+                                    </span>
+                                    <span class="quan-item" title="仅可购买生鲜部分商品 有效期2019-05-15至2019-05-16">
+                                        <s></s>
+                                        <b></b>
+                                        <span class="text">满199减20</span>
+                                    </span>
+                                    <span class="quan-item" title="仅可购买生鲜部分商品 有效期2019-05-17至2019-05-17">
+                                        <s></s>
+                                        <b></b>
+                                        <span class="text">满299减80</span>
+                                    </span>
+                                    <span class="more-btn">更多&gt;&gt;</span>
+                                </a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="summary-promotion">
+                        <div class="dt">促　　销</div>
+                        <span class="hl_red">满减</span>
+                        <span class="hl_red_two">满199元减50元</span>
+                </div>
+               <div class="support">
+                    <div class="dt">服务支持</div>
+                    <img src="images/relax.png" alt="">
+                    <span>优鲜陪</span>
+               </div>
+               <span class="middle-string"></span>
+               <div class="divide">
+                    <div class="dt">白条分期</div>
+                    <div class="divide-box">
+                        <ul>
+                            <li>不分期</li>
+                            <li>￥12.48起 x 3期</li>
+                            <li>￥6.33起 x 6期</li>
+                            <li>￥3.34起 x 12期</li>
+                            <li>￥1.66起 x 24期</li>
+                        </ul>
+                    </div>
+               </div>
+               <span class="middle-string"></span>
+               <div class="choose-amount " clstag="shangpin|keycount|product|goumaishuliang_2">
+                    <div class="wrap-input">
+                        <input class="text buy-num" onkeyup="setAmount.modify('#buy-num');" id="buy-num" value="1" data-min="1" data-max="200">
+                        <a class="btn-reduce" href="###">-</a>
+                        <a class="btn-add" href="#none">+</a>
+                    </div>
+                </div>
+              <a href="###" class="btn-join">加入购物车</a>
+              <span class="success">
+                   加入成功 &nbsp;<i class="iconfont icon-dagou2"></i>
+              </span>
+            </div>
+        </div>
+        
+
+
+</body>
+
+</html>
