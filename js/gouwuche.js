@@ -134,6 +134,7 @@ $(function () {
     $('.goods-list').on('click','.checkbox',function(){
         all();
     })
+
     //计算总数量和总价格
     var arr = [];
     function all(){
@@ -141,6 +142,7 @@ $(function () {
         $('.goods-list .checkbox').each(function(i,item){
             if($(item).prop('checked')){
                 arr.push(i);//被勾选了，将下标存起来
+                $('.goods-list .checkbox')[i].parent().css('background','pink');
             }
         })
 
@@ -164,7 +166,7 @@ $(function () {
 	//点击单选框反过来控制全选按钮
 	$('.goods-list').on('click','.checkbox',function() {
 		var len = $('.checkbox:checked').size();
-		var total = $('.checkbox').size();
+        var total = $('.checkbox').size();
 		if(len == total) {
 			//全都勾选了
 			$('.all-goods').prop('checked',true);
